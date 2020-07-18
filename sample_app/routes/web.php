@@ -43,3 +43,8 @@ Route::post('/messages', 'MessagesController@create');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/task_app', 'MessagesController@index_task_app');
+
+Route::post('/task_app', 'MessagesController@create');
+Auth::routes();

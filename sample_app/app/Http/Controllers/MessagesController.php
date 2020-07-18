@@ -20,6 +20,19 @@ class MessagesController extends Controller
         ]);
     }
 
+    public function index_task_app(){
+        $title = 'todoリスト';
+
+        // Messageモデルを利用してmessageの一覧を取得
+        $messages = \App\Message::all();
+
+        // views/messages/index.blade.phpを指定
+        return view('task_app.index_task_app',[
+            'title' => $title,
+            'messages' => $messages,
+        ]);
+    }
+
     public function create(Request $request){
 
         // requestオブジェクトのvalidateメソッドを利用。
