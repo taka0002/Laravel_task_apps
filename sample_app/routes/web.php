@@ -44,7 +44,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/task_app', 'MessagesController@index_task_app');
+Route::get('/task_apps', 'Task_appController@index_task_app');
 
-Route::post('/task_app', 'MessagesController@create');
+Route::post('/task_apps', 'Task_appController@create');
 Auth::routes();
+
+Route::patch('/task_apps', 'Task_appController@update');
+
+Route::delete('/task_apps', 'Task_appController@destroy');
