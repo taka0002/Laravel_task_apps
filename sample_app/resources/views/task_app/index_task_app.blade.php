@@ -57,18 +57,17 @@
     </form>
 
     <div class="table-responsive">
-        <table class="table table-bordered">
-                <tr>
+        <table class="table table-bordered table-hover">
+                <tr class="thead-light">
                     <th>やること</th>
-                    <th>締め切り期限</th>
                     <th>現在のステータス</th>
-                    <th>ステータス</th>
+                    <th>ステータス変更</th>
+                    <th>締め切り期限</th>
                     <th>終わったら</th>
                 </tr>
                 @forelse($task_apps as $task_app)
                 <tr class="<?php echo $task_app->status === 1 ? "false" : "" ?>">
                     <td>{{ $task_app->body }}</td>
-                    <td>{{ $task_app->date }}</td>
                     <td>
                     @if($task_app->status === 0)    
                     未着手
@@ -79,7 +78,7 @@
                     @endif
                     </td>
                     <td>
-                    <form method="post" action="{{ url('/task_apps')}}">
+                    <form method="post" action="{{ url('/task_apps')}}" id="submit_form">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     <select name="status" class="status">
@@ -90,6 +89,7 @@
                     <input type="hidden" name="id" value="{{ $task_app->id }}">
                     </form>
                     </td>
+                    <td>{{ $task_app->date }}</td>
                     <td>
                     <form method="post" action="{{ url('/task_apps')}}">
                     {{ csrf_field() }}
