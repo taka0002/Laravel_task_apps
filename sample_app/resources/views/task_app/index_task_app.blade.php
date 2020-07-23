@@ -55,41 +55,53 @@
             <input type="submit" value="投稿" class="btn btn-primary">
         </div>
     </form>
-
+    <div class="sort">
+        <form method="get" action="{{ url('/task_apps')}}">
+            締め切り期限順を
+            <select name="sort">
+                <option value="asc">昇順</option>
+                <option value="desc">降順</option>
+            </select>に
+            <input type="submit" value="並び替え" class="btn btn-primary">
+        </form>
+    </div>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
                 <tr class="thead-light">
                     <th>やること</th>
                     <th>現在のステータス</th>
                     <th>ステータス変更</th>
+                    <form method="get" action="{{ url('/task_apps')}}">
                     <th>締め切り期限</th>
+                    </form>
                     <th>終わったら</th>
                 </tr>
                 @forelse($task_apps as $task_app)
                 <tr class="<?php echo $task_app->status === 1 ? "false" : "" ?>">
-                    <td>{{ $task_app->body }}</td>
+                    <form id="submit_form" method="post" action="{{ url('/task_apps')}}">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
+                        <td><input type="text" name="body" value="{{ $task_app->body }}" /></td>
+                        <input type="hidden" name="id" value="{{ $task_app->id }}">
+                        <input type="hidden" name="sql_kind" value="update_text">
+                    </form>
                     <td>
                     @if($task_app->status === 0)    
                     未着手
                     @elseif($task_app->status === 1)
                     着手中
-                    @elseif($task_app->status === 2)
-                    完了
                     @endif
                     </td>
                     <td>
                     <form method="post" action="{{ url('/task_apps')}}" id="submit_form">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
-                    <select name="status" class="status">
-                        <option value="0">未着手</option>
-                        <option value="1">着手中</option>
-                    </select>に
                     <input type="submit" value="変更" class="btn btn-primary">
                     <input type="hidden" name="id" value="{{ $task_app->id }}">
+                    <input type="hidden" name="sql_kind" value="update">
                     </form>
                     </td>
-                    <td>{{ $task_app->date }}</td>
+                    <td class="text">{{ $task_app->date }}</td>
                     <td>
                     <form method="post" action="{{ url('/task_apps')}}">
                     {{ csrf_field() }}
