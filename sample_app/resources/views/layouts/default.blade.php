@@ -38,7 +38,39 @@
         .table-bordered td {
             vertical-align: middle;
         }
+        .sort {
+            text-align:right;
+            margin:0 10px 10px 0;
+        }
+        .sort select {
+            margin:0 10px;
+            border-radius: 5px;
+        }
     </style>
+    <script>
+        jQuery(function($){
+            $('td.text').click(function(){
+                if(!$(this).hasClass('on')){
+                    $(this).addClass('on');
+                    $(this).html('<input type="text" name="body" value="{{ $task_app->body }}" />');
+                    $('td.text > input').focus().blur(function(){
+                        var inputVal = $(this).val();
+                        if(inputVal===''){
+                            inputVal = this.defaultValue;
+                        };
+                        $(this).parent().removeClass('on').text(inputVal);
+                    });
+                };
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function(){
+        $(".text").change(function(){
+            $("#submit_form").submit();
+        });
+        });
+    </script>
 </head>
 <body>
     @yield('content')

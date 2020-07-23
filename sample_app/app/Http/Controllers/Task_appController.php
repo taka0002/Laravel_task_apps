@@ -7,11 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class Task_appController extends Controller
 {
-    public function index_task_app(){
+    public function index_task_app(Request $request){
         $title = 'To Doリスト';
-
         // Messageモデルを利用してmessageの一覧を取得
-        $task_apps = \App\task_app::all()->where('users_id',Auth::user()->id);
+
+        if($request->sort === "asc") {
+            $task_apps = \App\task_app::all()->where('users_id',Auth::user()->id)->sortBy('date');
+        } else {
+            $task_apps = \App\task_app::all()->where('users_id',Auth::user()->id)->sortByDesc('date');
+        }
 
         // views/messages/index.blade.phpを指定
         return view('task_app.index_task_app',[
@@ -49,7 +53,17 @@ class Task_appController extends Controller
 
         $task_app = \App\task_app::find($request->id);
 
-        $task_app->status = $request->status;
+        if($request->sql_kind === "update") {
+            
+            if($task_app->status === 0) {
+                $task_app->status = 1;
+            } else {
+                $task_app->status = 0;
+            }
+        } else {
+            $task_app->body = $request->body;
+        }
+
         // messagesテーブルにINSERT
         $task_app->save();
         // メッセージ一覧ページにリダイレクト
