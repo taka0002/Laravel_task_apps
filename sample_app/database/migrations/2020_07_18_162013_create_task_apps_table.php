@@ -19,6 +19,7 @@ class CreateTaskAppsTable extends Migration
             $table->date('date', "YYYY-MM-DD");
             $table->int('status', 11);
             $table->int('users_id', 11);
+            $table->int('sort_status', 11);
             $table->timestamps();
         });
     }

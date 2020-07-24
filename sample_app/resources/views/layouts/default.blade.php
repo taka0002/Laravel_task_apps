@@ -45,21 +45,43 @@
         .sort select {
             margin:0 10px;
             border-radius: 5px;
+            padding:0 5px 5px;
+        }
+        input.update {
+            background:transparent;
+            border:none;
+        }
+        input.update:focus {
+            outline: none;
+        }
+        th select {
+            background:transparent;
+            border:none;
+            appearance: none; 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            font-weight: bold;
+        }
+        th select:focus {
+            outline: none;
         }
     </style>
     <script>
         jQuery(function($){
-            $('td.text').click(function(){
+            $('div.text').click(function(){
                 if(!$(this).hasClass('on')){
                     $(this).addClass('on');
-                    $(this).html('<input type="text" name="body" value="{{ $task_app->body }}" />');
-                    $('td.text > input').focus().blur(function(){
-                        var inputVal = $(this).val();
-                        if(inputVal===''){
-                            inputVal = this.defaultValue;
-                        };
-                        $(this).parent().removeClass('on').text(inputVal);
-                    });
+                    var txt = $(this).text();
+                    $(this).html('<input type="text" name="body" value="'+txt+'" />');
+                    $('div > input').focus().blur(function(){
+                    var inputVal = $(this).val();
+                    //もし空欄だったら空欄にする前の内容に戻す
+                    if(inputVal===''){
+                        inputVal = this.defaultValue;
+                    };
+                    //編集が終わったらtextで置き換える
+                    $(this).parent().removeClass('on').text(inputVal);
+            });
                 };
             });
         });

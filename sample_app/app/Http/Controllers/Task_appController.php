@@ -53,21 +53,25 @@ class Task_appController extends Controller
 
         $task_app = \App\task_app::find($request->id);
 
-        if($request->sql_kind === "update") {
+        if($request->sql_kind === "update_text") {
+
+            $task_app->body = $request->body;
+            $task_app->save();
+
+            return redirect('/task_apps');
+
+        } else {
             
             if($task_app->status === 0) {
                 $task_app->status = 1;
             } else {
                 $task_app->status = 0;
             }
-        } else {
-            $task_app->body = $request->body;
+            // messagesテーブルにINSERT
+            $task_app->save();
+            // メッセージ一覧ページにリダイレクト
+            return redirect('/task_apps');
         }
-
-        // messagesテーブルにINSERT
-        $task_app->save();
-        // メッセージ一覧ページにリダイレクト
-        return redirect('/task_apps')->with('status', 'ステータス変更完了!ファイト！');
     }
 
     public function destroy(Request $request) {
