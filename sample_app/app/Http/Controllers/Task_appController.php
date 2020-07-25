@@ -58,7 +58,14 @@ class Task_appController extends Controller
             $task_app->body = $request->body;
             $task_app->save();
 
-            return redirect('/task_apps');
+            return redirect('/task_apps')->with('status', 'やること変更完了！');
+
+        } else if($request->sql_kind === "update_date"){
+
+            $task_app->date = $request->date;
+            $task_app->save();
+
+            return redirect('/task_apps')->with('status', '締め切り日変更完了！');
 
         } else {
             
@@ -70,7 +77,7 @@ class Task_appController extends Controller
             // messagesテーブルにINSERT
             $task_app->save();
             // メッセージ一覧ページにリダイレクト
-            return redirect('/task_apps');
+            return redirect('/task_apps')->with('status', 'ステータス変更完了！');
         }
     }
 

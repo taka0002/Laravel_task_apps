@@ -98,7 +98,15 @@
                     </form>
                     @endif
                     </td>
-                    <td>{{ $task_app->date }}</td>
+                    <td class="text-nowrap">
+                        <form method="post" action="{{ url('/task_apps')}}" id="submit_form">
+                                {{ csrf_field() }}
+                                {{ method_field('PATCH') }}
+                                <input type="hidden" name="id" value="{{ $task_app->id }}">
+                                <input type="hidden" name="sql_kind" value="update_date">
+                                <span class="date">{{ $task_app->date }}</span>
+                        </form>
+                    </td>
                     <td>
                     <form method="post" action="{{ url('/task_apps')}}">
                     {{ csrf_field() }}
