@@ -84,6 +84,20 @@
             });
                 };
             });
+            $('.date').click(function(){
+                if(!$(this).hasClass('on')){
+                    $(this).addClass('on');
+                    var txt = $(this).text();
+                    $(this).html('<input type="date" name="date" value="'+txt+'" /><input type="submit" value="変更">');
+                    $('div > input').focus().blur(function(){
+                    var inputVal = $(this).val();
+                    //もし空欄だったら空欄にする前の内容に戻す
+                    if(inputVal===''){
+                        inputVal = this.defaultValue;
+                    };
+            });
+                };
+            });
         });
     </script>
     <script type="text/javascript">
