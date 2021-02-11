@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/profile', function () {
     return view('profile');
 });
+
 Route::get('/blade_sample', function () {
     $title = 'bladeテンプレートのサンプルです';
     $description = 'bladeテンプレートを利用すると、<br>HTML内にPHPの変数を埋め込むことができます。';
@@ -52,3 +53,9 @@ Auth::routes();
 Route::patch('/task_apps', 'Task_appController@update');
 
 Route::delete('/task_apps', 'Task_appController@destroy');
+
+Route::get('/task_apps_category', 'Task_appController@index_task_app_category');
+
+Route::patch('/task_apps_category', 'Task_appController@update');
+
+Route::delete('/task_apps_category', 'Task_appController@destroy');

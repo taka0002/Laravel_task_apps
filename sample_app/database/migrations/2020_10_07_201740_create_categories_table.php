@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaskAppsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,14 +14,10 @@ class CreateTaskAppsTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_apps', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('body', 100);
-            $table->date('date', "YYYY-MM-DD");
-            $table->integer('status', 11);
-            $table->string('description', 1000);
-            $table->integer('users_id', 11);
-            $table->integer('sort_status', 11);
+            $table->integer('users_id');
+            $table->string('category_name')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateTaskAppsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task_apps');
+        Schema::dropIfExists('categories');
     }
 }

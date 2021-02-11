@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class task_app extends Model
+class taks_apps_archive extends Model
 {
+    //
 }
