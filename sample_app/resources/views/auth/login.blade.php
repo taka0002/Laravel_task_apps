@@ -38,17 +38,10 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> 入力内容を記憶する
-                                    </label>
-                                </div>
-                            </div>
+                        <div class="text-center">
+                            <p>テストユーザーアドレス：test@test.com</p>
+                            <p>テストユーザーパスワード：taka0002</p>
                         </div>
-
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

@@ -1,0 +1,64 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url(../font/myfont.ttf);
+}
+body {
+    font-family: MyFont;
+    font-size:20px;
+    background: none;
+    font-weight: bold;
+}
+
+#password {
+    font-family: Raleway,sans-serif;
+}
+
+.navbar-default {
+    background-color: #f5f5f5;
+    border: none;
+}
+
+.panel-heading {
+    text-align: center;
+}
+
+.form-group {
+    text-align:center;
+}
+.form-control{
+    font-size:22px;
+}
+
+.btn {
+    width: 100%;
+    font-size: 20px;
+}
+
+.panel-default>.panel-heading {
+    background:none;
+    border: none;
+    font-size: 28px;
+}
+
+.panel {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.panel-body{
+    border-bottom: none;
+}
+
+@media (min-width: 992px){
+    .col-md-offset-4 {
+        margin-left: 16.66666666%;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .form-horizontal .control-label {
+        font-size: 24px;
+    }
+}
